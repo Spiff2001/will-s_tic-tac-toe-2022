@@ -15,19 +15,24 @@ class Game extends React.Component{
             }
         }
 class Board extends React.Component{
+    constructor(props){
+        super(props);
+        // this.state= Array(9).fill(null)
+    }
     
     renderSquare(i){
-        return <Square/>
+        
+        return <Square value={i}/>
     }
     render(){
-        const player = 'x';
+        const status = 'x';
         return(
             <div className= "board ">
-                <div>Next Player: {player}</div>
+                <div> Next Player: {status} </div>
                 <div className = "firstRow" > 
-                    {this.renderSquare(0)}    
-                    {this.renderSquare(1)}   
-                    {this.renderSquare(2)}    
+                   {this.renderSquare(0)}    
+                   {this.renderSquare(1)}   
+                   {this.renderSquare(2)}    
                  </div>
 
                 <div className = "middleRow" > 
@@ -47,10 +52,18 @@ class Board extends React.Component{
 }
 
 class Square extends React.Component{
+    constructor(props){
+        super(props);
+        this.state ={
+            value : null
+        }
+    }
+        
     render(){
         return(
-            <button className = "square">
-                {/* we'll be adding more stuff to this later */}
+            <button 
+            className = "square" onClick={()=>{ this.setState({value : this.props.value})}}>
+            {this.state.value}
             </button>
         );
     }
